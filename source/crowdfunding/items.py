@@ -8,12 +8,7 @@
 import scrapy
 
 
-class CrowdfundingItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
-
-class CrowdriseTeamFundraiser(scrapy.Item):
+class CrowdriseFundraiser(scrapy.Item):
     page_type = scrapy.Field()
     url = scrapy.Field()
     title = scrapy.Field()

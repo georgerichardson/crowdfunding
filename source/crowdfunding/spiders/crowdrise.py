@@ -5,7 +5,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from babel.numbers import parse_decimal, parse_number
 
-from crowdfunding.items import CrowdriseTeamFundraiser
+from crowdfunding.items import CrowdriseFundraiser
 
 def parse_team_currency_value(string):
     try:
@@ -133,7 +133,7 @@ class CrowdriseFundraiserSpider(scrapy.Spider):
             beneficiary_url = response.xpath(beneficiary_url).extract_first()
 
             
-        fundraiser = CrowdriseTeamFundraiser(
+        fundraiser = CrowdriseFundraiser(
                 url = url,
                 page_type = page_type,
                 title = title,
