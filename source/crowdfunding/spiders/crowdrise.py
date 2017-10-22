@@ -41,12 +41,12 @@ def parse_relative_date(possible_dates):
 class CrowdriseFundraiserSpider(scrapy.Spider):
     name = 'crowdrise'
     allowed_domains = ['crowdrise.com']
-    site_url = 'https://crowdrise.com/'
     
     def __init__(self, categories=None, page_limit=None):
         self.page_limit = page_limit
         self.categories = categories
         self.site_sections = ['orphanage']
+        self.site_url = 'https://crowdrise.com'
 
     def start_requests(self):
         if self.categories:
@@ -132,7 +132,8 @@ class CrowdriseFundraiserSpider(scrapy.Spider):
             beneficiary_url = '//div[@class="row clickable-user-row" and descendant::span[contains(., "Benefiting Charity")]]//a/@href'
             beneficiary_url = response.xpath(beneficiary_url).extract_first()
 
-        beneficiary_url = site_url.join(beneficiary_url)
+        if beneficiary_url:
+            beneficiary_url = self.site_url + beneficiary_url
 
         fundraiser = CrowdriseFundraiser(
                 url = url,
